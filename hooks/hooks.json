@@ -16,8 +16,8 @@
   },
   "git_hooks": {
     "description": "Not auto-installed. To enable git pre-commit triple-check, run one of:",
-    "install_bash": "ln -s ../../plugin/llm-wiki-harness/hooks/pre-commit-triple-check.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit",
-    "install_powershell": "Copy-Item plugin/llm-wiki-harness/hooks/pre-commit-triple-check.ps1 .git/hooks/pre-commit",
-    "install_hookspath": "git config core.hooksPath plugin/llm-wiki-harness/hooks"
+    "install_bash": "ln -s \"${CLAUDE_PLUGIN_ROOT}/hooks/pre-commit-triple-check.sh\" .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit",
+    "install_powershell": "Copy-Item \"${CLAUDE_PLUGIN_ROOT}/hooks/pre-commit-triple-check.ps1\" .git/hooks/pre-commit",
+    "install_hookspath": "cp \"${CLAUDE_PLUGIN_ROOT}/hooks/pre-commit-triple-check.sh\" .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit"
   }
 }

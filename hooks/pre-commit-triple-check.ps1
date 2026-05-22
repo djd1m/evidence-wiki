@@ -1,12 +1,12 @@
 ﻿# Pre-commit hook (PowerShell): triple-check on staged .md files
 #
 # Windows equivalent of pre-commit-triple-check.sh (full parity).
-# Implements 3-pillar discipline from `.claude/shards/triple-pillar.shard.md`.
+# Implements 3-pillar discipline (triple-pillar shard / governance protocol).
 #
-# This file is intentionally PURE ASCII. Windows PowerShell 5.1 reads UTF-8
-# files without BOM as ANSI, which corrupts non-ASCII source and breaks the
-# parser. Cyrillic claim units are therefore expressed as \uXXXX .NET-regex
-# escapes (interpreted by the regex engine, not by the file encoding).
+# ENCODING: this file MUST be saved as UTF-8 WITH BOM. Windows PowerShell
+# 5.1 reads a UTF-8 file without BOM as ANSI, which corrupts the Cyrillic
+# claim units in $UnitRe and breaks the parser. When editing this file,
+# always preserve the BOM (UTF8Encoding with BOM / "UTF-8 with BOM").
 #
 # Invocation:
 #   pre-commit-triple-check.ps1                          - check staged .md
@@ -14,8 +14,8 @@
 #       always exit 0 (for Claude Code PostToolUse hook)
 #
 # Install:
-#   git config core.hooksPath .claude/hooks
-# or run manually: powershell -File .claude/hooks/pre-commit-triple-check.ps1
+#   see README.md in this directory, or hooks.json (git_hooks section).
+# Run manually: powershell -File <plugin>/hooks/pre-commit-triple-check.ps1
 #
 # NB: claim detection is a heuristic (advisory tool). Two-stage: a line is a
 # claim if it contains a digit AND a marker (%, currency, unit, ratio, decimal).
@@ -39,7 +39,7 @@ if ($args.Count -ge 2 -and $args[0] -eq '--advisory-single') {
 # source = inline markdown link to a pillar path or external URL
 $SourceRe = '\[.+\]\((https?://|\.\./adrs/|\.\./methodologies/|\.\./researches/|adrs/|methodologies/|researches/)'
 
-# Cyrillic claim units as \uXXXX escapes (file stays pure-ASCII).
+# Cyrillic claim units, literal UTF-8 (file has BOM - see ENCODING note above).
 # Decoded: ms / sek / min / chas / GB / TB / mlrd / mln / tys / rub / god / let
 $UnitRe = '[0-9]\s*(ms|мс|сек|мин|час|GB|ГБ|TB|ТБ|млрд|млн|тыс|руб|год|лет)'
 # Currency: dollar / EUR / RUB
@@ -147,7 +147,7 @@ if ($Mode -eq 'strict' -and $TotalMissing -gt $Threshold) {
     Write-Host "[FAIL] TRIPLE_CHECK_FAILED (strict mode - MISSING $TotalMissing over threshold $Threshold)"
     Write-Host "   Add inline links to ADR / methodology / research / external URL"
     Write-Host "   or set TRIPLE_CHECK_MODE=advisory to skip (not recommended)"
-    Write-Host "   See: .claude/commands/triple-check.md"
+    Write-Host "   See: /triple-check command documentation"
     Write-Host "================================================================"
     exit 1
 }

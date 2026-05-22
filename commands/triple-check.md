@@ -11,7 +11,7 @@ trust_tier: 1
 - **Methodology** (inline ссылка на `methodologies/*.md` или `(см. Методика: ...)`)
 - **Research** (inline ссылка на `researches/*/` или внешний Tier A/B/C источник)
 
-Реализует governance из `.claude/rules/inline-source-verification.md` и `.claude/shards/triple-pillar.shard.md`.
+Реализует governance из `governance/triple-pillar.governance.md` и `shards/triple-pillar.shard.md`.
 
 ## Usage
 
@@ -27,7 +27,7 @@ trust_tier: 1
 
 ## Что такое factual claim
 
-Утверждение, требующее источника (см. `.claude/rules/inline-source-verification.md`):
+Утверждение, требующее источника (см. `governance/triple-pillar.governance.md`):
 
 | Считается | Не считается |
 |-----------|--------------|
@@ -119,7 +119,7 @@ Claims найдено: M
 - `/wiki-generate` запускает `/triple-check` в Step 8 для всех новых концептов
 - `/feature-adr` step 7 (Code) и step 8 (QE) запускают `/triple-check` на ADR и сгенерированных артефактах
 - `/casarium` Phase 4 (Architecture) запускает `/triple-check 04_architecture.md`
-- PreCommit hook (`.claude/hooks/pre-commit-triple-check.sh` — to be added) запускает для staged .md
+- PreCommit hook (`hooks/pre-commit-triple-check.sh`) запускает для staged .md
 
 ## Model Routing
 
@@ -144,6 +144,6 @@ Claims найдено: M
 
 ## Related
 
-- `.claude/rules/inline-source-verification.md` — спецификация требований к источникам
-- `.claude/shards/triple-pillar.shard.md` — где обязателен 3-pillar (phase gates)
-- `.claude/skills/concept-wiki-generator/SKILL.md` — генератор, который вызывает /triple-check на выходе
+- `governance/triple-pillar.governance.md` — спецификация требований к источникам
+- `shards/triple-pillar.shard.md` — где обязателен 3-pillar (phase gates)
+- `skills/concept-wiki-generator/SKILL.md` — генератор, который вызывает /triple-check на выходе

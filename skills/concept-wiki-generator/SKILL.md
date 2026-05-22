@@ -124,6 +124,7 @@ Canonical map ВСЕХ узлов (concept + adr + methodology + research) с т
 
 ## Related
 
-- `.claude/commands/triple-check.md` — валидатор 3-pillar discipline для любого .md
-- `.claude/shards/triple-pillar.shard.md` — governance shard для интеграции в /feature-adr и /casarium
-- `researches/agentspace_desktop_wiki/` — пример LLM-Wiki для кода (тот же паттерн, другой scope)
+- `commands/triple-check.md` — валидатор 3-pillar discipline для любого .md
+- `shards/triple-pillar.shard.md` — governance shard для интеграции в pipeline phases
+- `templates/concept.template.md` — шаблон atomic концепт-страницы
+- `governance/triple-pillar.governance.md` — домен-агностичная спецификация 3-pillar протокола

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Pre-commit hook: triple-check на staged .md файлах
 #
-# Реализует 3-pillar discipline из `.claude/shards/triple-pillar.shard.md`:
+# Реализует 3-pillar discipline (triple-pillar shard / governance protocol):
 # каждый factual claim должен иметь inline-ссылку на ADR / methodology /
 # research / внешний верифицированный источник.
 #
@@ -14,10 +14,8 @@
 #   pre-commit-triple-check.sh --advisory-single FILE   — проверить один файл,
 #       always advisory, always exit 0 (для Claude Code PostToolUse hook)
 #
-# Установка:
-#   git config core.hooksPath .claude/hooks
-# ИЛИ:
-#   ln -s ../../.claude/hooks/pre-commit-triple-check.sh .git/hooks/pre-commit
+# Установка: см. README.md в этом каталоге (секция «Установка»)
+#   или hooks.json (секция git_hooks).
 #
 # NB: claim-детекция — эвристика (advisory tool, не precision instrument).
 # Двухстадийная: строка считается claim'ом если содержит цифру И один из
@@ -97,9 +95,9 @@ while IFS= read -r file; do
     }
   ' || true)
 
-  CLAIM_COUNT=$(echo "$CLAIM_LINES" | grep -c . || echo 0)
+  CLAIM_COUNT=$(echo "$CLAIM_LINES" | grep -c . || true)
   MISSING_LINES=$(echo "$CLAIM_LINES" | grep -vE "$SOURCE_RE" | grep -v '^[[:space:]]*$' || true)
-  MISSING=$(echo "$MISSING_LINES" | grep -c . || echo 0)
+  MISSING=$(echo "$MISSING_LINES" | grep -c . || true)
 
   if [[ "$MISSING" -gt 0 ]]; then
     FILES_WITH_ISSUES=$((FILES_WITH_ISSUES + 1))
@@ -129,7 +127,7 @@ if [[ "$MODE" == "strict" && "$TOTAL_MISSING" -gt "$MISSING_THRESHOLD" ]]; then
   echo "❌ TRIPLE_CHECK_FAILED (strict mode — MISSING $TOTAL_MISSING > threshold $MISSING_THRESHOLD)"
   echo "   Добавьте inline-ссылки на ADR / methodology / research / external URL"
   echo "   или установите TRIPLE_CHECK_MODE=advisory для пропуска (не рекомендуется)"
-  echo "   Подробнее: .claude/commands/triple-check.md"
+  echo "   Подробнее: документация команды /triple-check"
   echo "════════════════════════════════════════════════════════════════"
   exit 1
 fi

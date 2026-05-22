@@ -1,6 +1,6 @@
-# `.claude/hooks/`
+# `hooks/` — Pre-Commit Triple-Check
 
-Cross-platform git hooks, реализующие governance из `.claude/shards/`.
+Cross-platform git hooks, реализующие governance из `shards/triple-pillar.shard.md`.
 
 ## pre-commit-triple-check
 
@@ -27,7 +27,7 @@ Pre-commit hook, который запускается при `git commit` и с
 
 - `*/wiki-backlinks.md` (auto-generated)
 - `wiki/concepts/*.md` (auto-generated)
-- `.claude/**` (внутренний harness)
+- `.claude/**` (внутренний harness целевого проекта)
 - YAML frontmatter, code blocks, wiki:see-also marker-блоки
 
 ### Режимы
@@ -38,38 +38,36 @@ Pre-commit hook, который запускается при `git commit` и с
 | `TRIPLE_CHECK_MODE` | `strict` | Блокирует commit при MISSING > threshold |
 | `TRIPLE_CHECK_MISSING_THRESHOLD` | `3` (default) | Порог для strict mode |
 
-### Установка
+### Установка в целевой проект
 
-**Вариант 1 (рекомендуется):** настроить git на использование hooks-папки из репо:
+Hook ставится в `.git/hooks/pre-commit` целевого проекта. Канонические команды — в секции `git_hooks` файла `hooks.json`. Кратко (`<plugin>` = корень установленного плагина, напр. `~/.claude/plugins/llm-wiki-harness` или `${CLAUDE_PLUGIN_ROOT}`):
+
+**Linux / macOS / Git Bash** — симлинк:
 
 ```bash
-git config core.hooksPath .claude/hooks
+ln -s "<plugin>/hooks/pre-commit-triple-check.sh" .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
 ```
 
-После этого git автоматически найдёт `pre-commit-triple-check.sh` (если запущен под bash) или `.ps1` (если под PowerShell). Это работает только если файл назван **`pre-commit`** — поэтому переименуй / симлинкни:
+**Windows PowerShell** — копия:
+
+```powershell
+Copy-Item "<plugin>\hooks\pre-commit-triple-check.ps1" .git\hooks\pre-commit
+```
+
+> `core.hooksPath` напрямую на `hooks/` не работает: git ищет файл с именем `pre-commit`, а в каталоге — `pre-commit-triple-check.*`. Поэтому ставим симлинк/копию под именем `pre-commit`.
+
+### Одноразовый запуск (без установки)
 
 ```bash
-# Linux / macOS / Git Bash:
-ln -s pre-commit-triple-check.sh .claude/hooks/pre-commit
-chmod +x .claude/hooks/pre-commit
+bash <plugin>/hooks/pre-commit-triple-check.sh
 ```
 
 ```powershell
-# PowerShell:
-Copy-Item .claude\hooks\pre-commit-triple-check.ps1 .claude\hooks\pre-commit
+pwsh <plugin>\hooks\pre-commit-triple-check.ps1
 ```
 
-**Вариант 2:** одноразовый запуск без установки:
-
-```bash
-.claude/hooks/pre-commit-triple-check.sh
-```
-
-```powershell
-pwsh .claude\hooks\pre-commit-triple-check.ps1
-```
-
-### Pre-commit отказ
+### Pre-commit поведение
 
 Если в commit'е содержательно НЕТ числовых claims без источника (всё подкреплено) — hook молчит и пропускает commit.
 
@@ -87,7 +85,7 @@ git commit --no-verify -m "..."
 
 ### Связано
 
-- `.claude/commands/triple-check.md` — полная спецификация валидатора
-- `.claude/shards/triple-pillar.shard.md` — governance shard, описывающий 3-pillar discipline
-- `.claude/rules/inline-source-verification.md` — правила inline-ссылок
-- `wiki/graph.json` `integrity` секция — машинный отчёт о coverage
+- `commands/triple-check.md` — полная спецификация валидатора
+- `shards/triple-pillar.shard.md` — governance shard, описывающий 3-pillar discipline
+- `governance/triple-pillar.governance.md` — домен-агностичная спецификация протокола + правила inline-ссылок
+- `hooks.json` — Claude Code PostToolUse hook + install-команды git-хука

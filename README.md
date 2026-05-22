@@ -41,8 +41,8 @@ llm-wiki-harness/
 # Из marketplace (когда опубликован):
 /plugin install llm-wiki-harness
 
-# Локально:
-cp -r plugin/llm-wiki-harness ~/.claude/plugins/
+# Локально (из корня этого репозитория плагина):
+cp -r . ~/.claude/plugins/llm-wiki-harness/
 ```
 
 ### Настройка под проект
@@ -53,10 +53,7 @@ cp -r plugin/llm-wiki-harness ~/.claude/plugins/
 
 ### Git pre-commit hook (опционально)
 
-```bash
-git config core.hooksPath plugin/llm-wiki-harness/hooks
-# либо см. hooks/README.md
-```
+Установка hook'а в целевой проект — симлинком или копией в `.git/hooks/`. Точные команды (bash / PowerShell / `core.hooksPath`) — см. `hooks/README.md` и секцию `git_hooks` в `hooks/hooks.json`.
 
 ## Использование
 
@@ -72,7 +69,7 @@ git config core.hooksPath plugin/llm-wiki-harness/hooks
 
 ## Провенанс
 
-Извлечён из проекта [GenAI-Bundle-GTM](https://github.com/djd1m/GenAI-Bundle-GTM), где провалидирован на 20 концептах, 19 ADR, 12 методиках, 8 исследованиях. Полная история — в `HARNESS_MANIFEST.md` корневого репозитория.
+Извлечён из проекта [GenAI-Bundle-GTM](https://github.com/djd1m/GenAI-Bundle-GTM), где провалидирован на 20 концептах, 21 ADR, 13 методиках, 13 исследованиях (все 20 концептов — full triple-pillar). Полная история — в `HARNESS_MANIFEST.md` корневого репозитория.
 
 Core governance-протокол — часть `@dzhechkov/keysarium-core` (см. `governance/`).
 
