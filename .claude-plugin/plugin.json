@@ -16,7 +16,7 @@
     "governance",
     "adr"
   ],
-  "homepage": "https://github.com/djd1m/GenAI-Bundle-GTM/tree/main/plugin/evidence-wiki",
+  "homepage": "https://github.com/djd1m/evidence-wiki",
   "skills": [
     "./skills/concept-wiki-generator"
   ],
