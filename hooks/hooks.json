@@ -1,5 +1,5 @@
 {
-  "description": "Claude Code hook configuration for llm-wiki-harness plugin. Advisory PostToolUse triple-check after editing source .md files.",
+  "description": "Claude Code hook configuration for evidence-wiki plugin. Advisory PostToolUse triple-check after editing source .md files.",
   "hooks": {
     "PostToolUse": [
       {

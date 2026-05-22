@@ -1,14 +1,14 @@
 {
-  "name": "llm-wiki-harness-marketplace",
+  "name": "evidence-wiki-marketplace",
   "owner": {
     "name": "Dmitry Zhechkov",
     "email": "jechkov.dmitriy@gmail.com"
   },
   "plugins": [
     {
-      "name": "llm-wiki-harness",
+      "name": "evidence-wiki",
       "source": "./",
-      "description": "LLM-Wiki generator with 3-pillar evidence discipline — atomic Karpathy-style concept pages, every fact linked to decision/quantitative/qualitative sources, enforced via commands, a governance shard and pre-commit hooks."
+      "description": "Evidence-disciplined wiki — atomic, graph-linked concept pages where every factual claim carries an inline source, backed by N independent typed pillars and enforced via commands, a governance shard and pre-commit hooks."
     }
   ]
 }

@@ -1,6 +1,6 @@
-# llm-wiki-harness
+# evidence-wiki
 
-Claude Code plugin: **LLM-Wiki генератор с 3-pillar evidence discipline**.
+Claude Code plugin: **evidence-disciplined wiki** — атомарный граф-связанный слой концепт-страниц, где каждый факт несёт inline-источник.
 
 **Версия:** 0.1.0 · **Лицензия:** MIT
 
@@ -13,7 +13,7 @@ Claude Code plugin: **LLM-Wiki генератор с 3-pillar evidence disciplin
 ## Состав плагина
 
 ```
-llm-wiki-harness/
+evidence-wiki/
 ├── .claude-plugin/plugin.json        — манифест + config
 ├── skills/concept-wiki-generator/    — 8-шаговый pipeline генерации
 ├── commands/
@@ -39,10 +39,10 @@ llm-wiki-harness/
 
 ```bash
 # Из marketplace (когда опубликован):
-/plugin install llm-wiki-harness
+/plugin install evidence-wiki
 
 # Локально (из корня этого репозитория плагина):
-cp -r . ~/.claude/plugins/llm-wiki-harness/
+cp -r . ~/.claude/plugins/evidence-wiki/
 ```
 
 ### Настройка под проект

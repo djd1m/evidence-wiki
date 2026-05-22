@@ -1,7 +1,7 @@
 {
-  "name": "llm-wiki-harness",
+  "name": "evidence-wiki",
   "version": "0.1.0",
-  "description": "LLM-Wiki generator with 3-pillar evidence discipline. Builds atomic Karpathy-style concept pages over your docs, links every fact to decision/quantitative/qualitative sources, and enforces it via commands, a governance shard, and pre-commit hooks.",
+  "description": "Evidence-disciplined wiki: builds atomic, graph-linked concept pages over your docs and enforces that every factual claim carries an inline source, backed by N independent typed pillars (decision / quantitative / qualitative). Ships commands, a governance shard, and pre-commit hooks.",
   "author": {
     "name": "Dmitry Zhechkov",
     "email": "jechkov.dmitriy@gmail.com"
@@ -16,7 +16,7 @@
     "governance",
     "adr"
   ],
-  "homepage": "https://github.com/djd1m/GenAI-Bundle-GTM/tree/main/plugin/llm-wiki-harness",
+  "homepage": "https://github.com/djd1m/GenAI-Bundle-GTM/tree/main/plugin/evidence-wiki",
   "skills": [
     "./skills/concept-wiki-generator"
   ],

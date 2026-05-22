@@ -40,7 +40,7 @@ Pre-commit hook, который запускается при `git commit` и с
 
 ### Установка в целевой проект
 
-Hook ставится в `.git/hooks/pre-commit` целевого проекта. Канонические команды — в секции `git_hooks` файла `hooks.json`. Кратко (`<plugin>` = корень установленного плагина, напр. `~/.claude/plugins/llm-wiki-harness` или `${CLAUDE_PLUGIN_ROOT}`):
+Hook ставится в `.git/hooks/pre-commit` целевого проекта. Канонические команды — в секции `git_hooks` файла `hooks.json`. Кратко (`<plugin>` = корень установленного плагина, напр. `~/.claude/plugins/evidence-wiki` или `${CLAUDE_PLUGIN_ROOT}`):
 
 **Linux / macOS / Git Bash** — симлинк:
 

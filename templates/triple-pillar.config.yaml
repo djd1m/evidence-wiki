@@ -1,4 +1,4 @@
-# triple-pillar.config.yaml — конфигурация для llm-wiki-harness plugin
+# triple-pillar.config.yaml — конфигурация для evidence-wiki plugin
 #
 # Скопируйте в корень вашего проекта и адаптируйте под вашу структуру.
 # Используется skill concept-wiki-generator и командами /wiki-generate, /triple-check.
