@@ -1,0 +1,14 @@
+{
+  "name": "llm-wiki-harness-marketplace",
+  "owner": {
+    "name": "Dmitry Zhechkov",
+    "email": "jechkov.dmitriy@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "llm-wiki-harness",
+      "source": "./",
+      "description": "LLM-Wiki generator with 3-pillar evidence discipline — atomic Karpathy-style concept pages, every fact linked to decision/quantitative/qualitative sources, enforced via commands, a governance shard and pre-commit hooks."
+    }
+  ]
+}

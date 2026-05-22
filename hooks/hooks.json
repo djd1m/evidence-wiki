@@ -1,0 +1,23 @@
+{
+  "description": "Claude Code hook configuration for llm-wiki-harness plugin. Advisory PostToolUse triple-check after editing source .md files.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 5000,
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/pre-commit-triple-check.sh\" --advisory-single \"$TOOL_INPUT_file_path\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  },
+  "git_hooks": {
+    "description": "Not auto-installed. To enable git pre-commit triple-check, run one of:",
+    "install_bash": "ln -s ../../plugin/llm-wiki-harness/hooks/pre-commit-triple-check.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit",
+    "install_powershell": "Copy-Item plugin/llm-wiki-harness/hooks/pre-commit-triple-check.ps1 .git/hooks/pre-commit",
+    "install_hookspath": "git config core.hooksPath plugin/llm-wiki-harness/hooks"
+  }
+}
